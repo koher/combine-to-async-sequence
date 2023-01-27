@@ -14,7 +14,6 @@
 		D6C90F89298424410076C0D7 /* CombineToAsyncSequenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C90F88298424410076C0D7 /* CombineToAsyncSequenceTests.swift */; };
 		D6C90F93298424410076C0D7 /* CombineToAsyncSequenceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C90F92298424410076C0D7 /* CombineToAsyncSequenceUITests.swift */; };
 		D6C90F95298424410076C0D7 /* CombineToAsyncSequenceUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C90F94298424410076C0D7 /* CombineToAsyncSequenceUITestsLaunchTests.swift */; };
-		D6C90FA229842B570076C0D7 /* ViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C90FA129842B570076C0D7 /* ViewControllerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +44,6 @@
 		D6C90F8E298424410076C0D7 /* CombineToAsyncSequenceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CombineToAsyncSequenceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6C90F92298424410076C0D7 /* CombineToAsyncSequenceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineToAsyncSequenceUITests.swift; sourceTree = "<group>"; };
 		D6C90F94298424410076C0D7 /* CombineToAsyncSequenceUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineToAsyncSequenceUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		D6C90FA129842B570076C0D7 /* ViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +96,6 @@
 			children = (
 				D6C90F772984243F0076C0D7 /* CombineToAsyncSequenceApp.swift */,
 				D6C90F792984243F0076C0D7 /* ContentView.swift */,
-				D6C90FA129842B570076C0D7 /* ViewControllerView.swift */,
 				D6C90F7B298424410076C0D7 /* Assets.xcassets */,
 				D6C90F7D298424410076C0D7 /* Preview Content */,
 			);
@@ -261,7 +258,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6C90F7A2984243F0076C0D7 /* ContentView.swift in Sources */,
-				D6C90FA229842B570076C0D7 /* ViewControllerView.swift in Sources */,
 				D6C90F782984243F0076C0D7 /* CombineToAsyncSequenceApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
