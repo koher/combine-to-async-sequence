@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var state: ContentViewState = .init()
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            SecureField("パスワード", text: $state.password)
+                .textFieldStyle(.roundedBorder)
+            Button("Play") {
+                state.play()
+            }
         }
         .padding()
+    }
+}
+
+import Combine
+import AudioToolbox
+
+@MainActor
+final class ContentViewState: ObservableObject {
+    @Published var password: String = ""
+
+    func play() {
+        AudioServicesPlaySystemSound(1000)
     }
 }
 
