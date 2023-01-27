@@ -22,6 +22,37 @@ struct ContentView: View {
     }
 }
 
+final class ContentViewController: UIViewController {
+    private let state: ContentViewState = .init()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let passwordField: UITextField = .init()
+        passwordField.borderStyle = .roundedRect
+        passwordField.placeholder = "パスワード"
+        passwordField.isSecureTextEntry = true
+        let playButton: UIButton = .init(type: .system)
+        playButton.setTitle("Play", for: .normal)
+        playButton.addAction(.init { [weak self] _ in
+            guard let self else { return }
+            self.state.play()
+        }, for: .touchUpInside)
+        let stackView: UIStackView = .init(arrangedSubviews: [
+            passwordField,
+            playButton,
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        self.view.addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+    }
+}
+
 import Combine
 import AudioToolbox
 
@@ -36,6 +67,7 @@ final class ContentViewState: ObservableObject {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+//        ContentView()
+        ViewControllerView(make: { _ in ContentViewController() })
     }
 }
