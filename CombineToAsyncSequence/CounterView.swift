@@ -2,6 +2,7 @@ import SwiftUI
 import UIKit
 import Combine
 import AudioToolbox
+import AsyncAlgorithms
 
 struct CounterView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> CounterViewController {
@@ -64,9 +65,17 @@ final class CounterViewController: UIViewController {
 //        }
 //        cancellables.insert(.init { task.cancel() })
 
+//        Task { [weak self] in
+//            guard let state = self?.state else { return }
+//            for await count in state.count.values {
+//                countLabel.text = count.description
+//            }
+//        }
+//        .store(in: &cancellables)
+
         Task { [weak self] in
             guard let state = self?.state else { return }
-            for await count in state.count.values {
+            for await count in state.count {
                 countLabel.text = count.description
             }
         }
@@ -78,9 +87,17 @@ final class CounterViewController: UIViewController {
 //            }
 //            .store(in: &cancellables)
 
+//        Task { [weak self] in
+//            guard let state = self?.state else { return }
+//            for await _ in state.playSound.values {
+//                AudioServicesPlaySystemSound(1000)
+//            }
+//        }
+//        .store(in: &cancellables)
+
         Task { [weak self] in
             guard let state = self?.state else { return }
-            for await _ in state.playSound.values {
+            for await _ in state.playSound {
                 AudioServicesPlaySystemSound(1000)
             }
         }
@@ -96,14 +113,39 @@ extension Task {
 
 @MainActor
 final class CounterViewState: ObservableObject {
-    let count: CurrentValueSubject<Int, Never> = .init(0)
-    let playSound: PassthroughSubject<Void, Never> = .init()
+//    let count: CurrentValueSubject<Int, Never> = .init(0)
+    let count: AsyncStore<Int> = .init(0)
+//    let playSound: PassthroughSubject<Void, Never> = .init()
+    let playSound: AsyncChannel<Void> = .init()
 
     func countUp() {
         count.value += 1
         if count.value.isMultiple(of: 10) {
-            playSound.send(())
+//            playSound.send(())
+            Task {
+                await playSound.send(())
+            }
         }
+    }
+}
+
+final class AsyncStore<Value>: AsyncSequence {
+    typealias Element = Value
+
+    private let channel: AsyncChannel<Value> = .init()
+
+    var value: Value {
+        didSet {
+            Task { await channel.send(value) }
+        }
+    }
+
+    init(_ value: Value) {
+        self.value = value
+    }
+
+    func makeAsyncIterator() -> AsyncChannel<Value>.AsyncIterator {
+        channel.makeAsyncIterator()
     }
 }
 

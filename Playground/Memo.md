@@ -2,6 +2,8 @@
 
 https://koherent.org/pi/pi1000000.txt
 
+https://github.com/apple/swift-async-algorithms.git
+
 ---
 
 `@rethrows` が付与されたプロトコルを `@rethrows` プロトコルと呼ぶことにする。また、 `P` が `@rethrows` プロトコルのとき 、 `func foo<T: P>(_ x: T) rethrows` が `throws` になる場合、 `T` が rethrowing であると呼ぶことにする。
