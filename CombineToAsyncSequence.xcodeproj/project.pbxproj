@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D69E862329854A350071A2CC /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69E862229854A350071A2CC /* CounterView.swift */; };
+		D69E86252985557D0071A2CC /* AsyncCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69E86242985557D0071A2CC /* AsyncCancellable.swift */; };
+		D69E8627298555A20071A2CC /* Task+store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69E8626298555A20071A2CC /* Task+store.swift */; };
+		D69E86292985636F0071A2CC /* SoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69E86282985636F0071A2CC /* SoundView.swift */; };
 		D6C90F782984243F0076C0D7 /* CombineToAsyncSequenceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C90F772984243F0076C0D7 /* CombineToAsyncSequenceApp.swift */; };
 		D6C90F7A2984243F0076C0D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C90F792984243F0076C0D7 /* ContentView.swift */; };
 		D6C90F7C298424410076C0D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6C90F7B298424410076C0D7 /* Assets.xcassets */; };
@@ -35,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D69E862229854A350071A2CC /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		D69E86242985557D0071A2CC /* AsyncCancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncCancellable.swift; sourceTree = "<group>"; };
+		D69E8626298555A20071A2CC /* Task+store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+store.swift"; sourceTree = "<group>"; };
+		D69E86282985636F0071A2CC /* SoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundView.swift; sourceTree = "<group>"; };
 		D6C90F742984243F0076C0D7 /* CombineToAsyncSequence.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombineToAsyncSequence.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6C90F772984243F0076C0D7 /* CombineToAsyncSequenceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineToAsyncSequenceApp.swift; sourceTree = "<group>"; };
 		D6C90F792984243F0076C0D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,8 +106,12 @@
 			children = (
 				D6C90F772984243F0076C0D7 /* CombineToAsyncSequenceApp.swift */,
 				D6C90F792984243F0076C0D7 /* ContentView.swift */,
+				D69E862229854A350071A2CC /* CounterView.swift */,
 				D6C90F7B298424410076C0D7 /* Assets.xcassets */,
 				D6C90F7D298424410076C0D7 /* Preview Content */,
+				D69E86242985557D0071A2CC /* AsyncCancellable.swift */,
+				D69E8626298555A20071A2CC /* Task+store.swift */,
+				D69E86282985636F0071A2CC /* SoundView.swift */,
 			);
 			path = CombineToAsyncSequence;
 			sourceTree = "<group>";
@@ -266,7 +278,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6C90F7A2984243F0076C0D7 /* ContentView.swift in Sources */,
+				D69E8627298555A20071A2CC /* Task+store.swift in Sources */,
+				D69E86292985636F0071A2CC /* SoundView.swift in Sources */,
+				D69E86252985557D0071A2CC /* AsyncCancellable.swift in Sources */,
 				D6C90F782984243F0076C0D7 /* CombineToAsyncSequenceApp.swift in Sources */,
+				D69E862329854A350071A2CC /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
