@@ -129,13 +129,15 @@ final class CounterViewState: ObservableObject {
     }
 }
 
-final class AsyncStore<Value>: AsyncSequence {
+final class AsyncStore<Value: Sendable>: AsyncSequence {
     typealias Element = Value
 
     private let channel: AsyncChannel<Value> = .init()
 
     var value: Value {
         didSet {
+            let channel = self.channel
+            let value = self.value
             Task { await channel.send(value) }
         }
     }
