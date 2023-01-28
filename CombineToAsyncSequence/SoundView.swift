@@ -4,24 +4,29 @@ import AsyncAlgorithms
 import AudioToolbox
 
 struct SoundView: View {
-    @StateObject private var state: SoundViewState1 = .init()
+    @StateObject private var state: SoundViewState2 = .init()
 
     var body: some View {
-        Button("Play") {
-            state.play()
+        HStack(spacing: 40) {
+            Button("Play 1") {
+                state.play1()
+            }
+            Button("Play 2") {
+                state.play2()
+            }
         }
-        .onReceive(state.playSound) {
+        .onReceive(state.playSound) { _ in
             AudioServicesPlaySystemSound(1000)
         }
     }
 }
 
 extension View {
-    func onReceive<Stream: AsyncSequence>(_ stream: Stream, _ operation: @escaping (Stream.Element) -> Void) -> some View where Stream.Element: Sendable {
+    func onReceive<Stream: AsyncSequence>(_ stream: Stream, _ operation: @escaping (Stream.Element) -> Void) -> some View {
         modifier(OnReceive(stream: stream, operation: operation))
     }
 }
-private struct OnReceive<Stream: AsyncSequence>: ViewModifier where Stream.Element: Sendable {
+private struct OnReceive<Stream: AsyncSequence>: ViewModifier {
     let stream: Stream
     let operation: (Stream.Element) -> Void
 
@@ -41,25 +46,35 @@ private struct OnReceive<Stream: AsyncSequence>: ViewModifier where Stream.Eleme
 
 @MainActor
 final class SoundViewState1: ObservableObject {
-    private let playInput: PassthroughSubject<Void, Never> = .init()
+    private let playInput1: PassthroughSubject<Void, Never> = .init()
+    private let playInput2: PassthroughSubject<Void, Never> = .init()
     var playSound: some Publisher<Void, Never> {
-        playInput.debounce(for: .seconds(1.0), scheduler: DispatchQueue.main)
+        playInput1.zip(playInput2).map { _ in () }
     }
 
-    func play() {
-        playInput.send(())
+    func play1() {
+        playInput1.send(())
+    }
+
+    func play2() {
+        playInput2.send(())
     }
 }
 
 @MainActor
 final class SoundViewState2: ObservableObject {
-    private let playInput: AsyncChannel<Void> = .init()
-    var playSound: AsyncDebounceSequence<AsyncChannel<Void>, ContinuousClock> {
-        playInput.debounce(for: .seconds(1.0))
+    private let playInput1: AsyncChannel<Void> = .init()
+    private let playInput2: AsyncChannel<Void> = .init()
+    var playSound: some AsyncSequence {
+        zip(playInput1, playInput2).map { _ in () }
     }
 
-    func play() {
-        Task { await playInput.send(()) }
+    func play1() {
+        Task { await playInput1.send(()) }
+    }
+
+    func play2() {
+        Task { await playInput2.send(()) }
     }
 }
 
