@@ -47,7 +47,7 @@ final class CounterViewController: UIViewController {
             self.state.countUp()
         }, for: .touchUpInside)
 
-        state.$count
+        state.count
             .map { $0.description }
             .assign(to: \.text, on: countLabel)
             .store(in: &cancellables)
@@ -62,12 +62,12 @@ final class CounterViewController: UIViewController {
 
 @MainActor
 final class CounterViewState: ObservableObject {
-    @Published private(set) var count: Int = 0
+    let count: CurrentValueSubject<Int, Never> = .init(0)
     let playSound: PassthroughSubject<Void, Never> = .init()
 
     func countUp() {
-        count += 1
-        if count.isMultiple(of: 10) {
+        count.value += 1
+        if count.value.isMultiple(of: 10) {
             playSound.send(())
         }
     }
