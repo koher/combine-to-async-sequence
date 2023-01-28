@@ -4,7 +4,7 @@ import AsyncAlgorithms
 import AudioToolbox
 
 struct SoundView: View {
-    @StateObject private var state: SoundViewState2 = .init()
+    @StateObject private var state: SoundViewState1 = .init()
 
     var body: some View {
         Button("Play") {
@@ -43,7 +43,7 @@ private struct OnReceive<Stream: AsyncSequence>: ViewModifier where Stream.Eleme
 final class SoundViewState1: ObservableObject {
     private let playInput: PassthroughSubject<Void, Never> = .init()
     var playSound: some Publisher<Void, Never> {
-        playInput.throttle(for: .seconds(1.0), scheduler: DispatchQueue.main, latest: true)
+        playInput.debounce(for: .seconds(1.0), scheduler: DispatchQueue.main)
     }
 
     func play() {
@@ -54,8 +54,8 @@ final class SoundViewState1: ObservableObject {
 @MainActor
 final class SoundViewState2: ObservableObject {
     private let playInput: AsyncChannel<Void> = .init()
-    var playSound: AsyncThrottleSequence<AsyncChannel<Void>, ContinuousClock, ()> {
-        playInput.throttle(for: .seconds(1.0), latest: true)
+    var playSound: AsyncDebounceSequence<AsyncChannel<Void>, ContinuousClock> {
+        playInput.debounce(for: .seconds(1.0))
     }
 
     func play() {
