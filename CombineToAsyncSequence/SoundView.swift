@@ -4,7 +4,7 @@ import AsyncAlgorithms
 import AudioToolbox
 
 struct SoundView: View {
-    @StateObject private var state: SoundViewState2 = .init()
+    @StateObject private var state: SoundViewState1 = .init()
 
     var body: some View {
         HStack(spacing: 40) {
@@ -49,7 +49,7 @@ final class SoundViewState1: ObservableObject {
     private let playInput1: PassthroughSubject<Void, Never> = .init()
     private let playInput2: PassthroughSubject<Void, Never> = .init()
     var playSound: some Publisher<Void, Never> {
-        playInput1.zip(playInput2).map { _ in () }
+        playInput1.combineLatest(playInput2).map { _ in () }
     }
 
     func play1() {
@@ -66,7 +66,7 @@ final class SoundViewState2: ObservableObject {
     private let playInput1: AsyncChannel<Void> = .init()
     private let playInput2: AsyncChannel<Void> = .init()
     var playSound: some AsyncSequence {
-        zip(playInput1, playInput2).map { _ in () }
+        combineLatest(playInput1, playInput2).map { _ in () }
     }
 
     func play1() {
