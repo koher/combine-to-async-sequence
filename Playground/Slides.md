@@ -4,4 +4,10 @@
 
 ---
 
+![inline](img/Observation.png)
 
+^[^1]
+
+[^1]: https://forums.swift.org/t/pitch-observation/62051
+
+---
