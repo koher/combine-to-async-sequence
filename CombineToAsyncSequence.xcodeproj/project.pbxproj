@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D69E861E2984DFDD0071A2CC /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69E861D2984DFDD0071A2CC /* CounterView.swift */; };
 		D6C90F782984243F0076C0D7 /* CombineToAsyncSequenceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C90F772984243F0076C0D7 /* CombineToAsyncSequenceApp.swift */; };
 		D6C90F7A2984243F0076C0D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C90F792984243F0076C0D7 /* ContentView.swift */; };
 		D6C90F7C298424410076C0D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6C90F7B298424410076C0D7 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D69E861D2984DFDD0071A2CC /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		D6C90F742984243F0076C0D7 /* CombineToAsyncSequence.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombineToAsyncSequence.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6C90F772984243F0076C0D7 /* CombineToAsyncSequenceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineToAsyncSequenceApp.swift; sourceTree = "<group>"; };
 		D6C90F792984243F0076C0D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				D6C90F792984243F0076C0D7 /* ContentView.swift */,
 				D6C90F7B298424410076C0D7 /* Assets.xcassets */,
 				D6C90F7D298424410076C0D7 /* Preview Content */,
+				D69E861D2984DFDD0071A2CC /* CounterView.swift */,
 			);
 			path = CombineToAsyncSequence;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			files = (
 				D6C90F7A2984243F0076C0D7 /* ContentView.swift in Sources */,
 				D6C90F782984243F0076C0D7 /* CombineToAsyncSequenceApp.swift in Sources */,
+				D69E861E2984DFDD0071A2CC /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
