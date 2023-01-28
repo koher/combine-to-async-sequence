@@ -17,6 +17,10 @@ final class CounterViewController: UIViewController {
 
     private var cancellables: Set<AnyCancellable> = []
 
+    deinit {
+        AudioServicesPlaySystemSound(1001)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,16 +51,46 @@ final class CounterViewController: UIViewController {
             self.state.countUp()
         }, for: .touchUpInside)
 
-        state.count
-            .map { $0.description }
-            .assign(to: \.text, on: countLabel)
-            .store(in: &cancellables)
+//        state.count
+//            .map { $0.description }
+//            .assign(to: \.text, on: countLabel)
+//            .store(in: &cancellables)
 
-        state.playSound
-            .sink { _ in
+//        let task = Task { [weak self] in
+//            guard let state = self?.state else { return }
+//            for await count in state.count.values {
+//                countLabel.text = count.description
+//            }
+//        }
+//        cancellables.insert(.init { task.cancel() })
+
+        Task { [weak self] in
+            guard let state = self?.state else { return }
+            for await count in state.count.values {
+                countLabel.text = count.description
+            }
+        }
+        .store(in: &cancellables)
+
+//        state.playSound
+//            .sink { _ in
+//                AudioServicesPlaySystemSound(1000)
+//            }
+//            .store(in: &cancellables)
+
+        Task { [weak self] in
+            guard let state = self?.state else { return }
+            for await _ in state.playSound.values {
                 AudioServicesPlaySystemSound(1000)
             }
-            .store(in: &cancellables)
+        }
+        .store(in: &cancellables)
+    }
+}
+
+extension Task {
+    func store(in cancellables: inout Set<AnyCancellable>) {
+        cancellables.insert(.init { cancel() })
     }
 }
 
